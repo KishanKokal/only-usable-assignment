@@ -14,7 +14,7 @@
 
     --base-size: 1.2rem;
     --scale: 1.25;
-    --xl: calc(var(--h1) * var(--scale) * var(--scale)); 
+    --xl: calc(var(--h1) * var(--scale) * var(--scale));
     --lg: calc(var(--h1) * var(--scale));
     --h1: calc(var(--h2) * var(--scale));
     --h2: calc(var(--h3) * var(--scale));
@@ -158,6 +158,10 @@
 }
 
 .card p {
+  overflow-y: scroll;
+}
+
+.card p:first-of-type {
   line-height: 1.5;
   padding: 2rem 2rem 0 2rem;
   margin: 0;

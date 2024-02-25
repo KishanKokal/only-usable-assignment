@@ -7,7 +7,6 @@ describe("Text Overlaps", () => {
     cy.viewport(viewportWidth, viewportHeight);
 
     const checkTextOverlap = (elements) => {
-      cy.log("Checking for text overlap");
       const noOverlap = elements.toArray().every((element, index, array) => {
         const rect1 = element.getBoundingClientRect();
 
@@ -63,7 +62,6 @@ describe("Unscrollable Text", () => {
     cy.viewport(viewportWidth, viewportHeight);
 
     const checkScrollableText = (elements) => {
-      cy.log("Checking for scrollable text");
       elements.each((index, element) => {
         if (
           element.tagName === "P" &&
@@ -94,15 +92,15 @@ describe("Unscrollable Text", () => {
     });
   };
 
-  it("Desktop - Check Scrollable Text", () => {
+  it("Desktop", () => {
     runTest(1200, 800);
   });
 
-  it("Tablet - Check Scrollable Text", () => {
+  it("Tablet", () => {
     runTest(820, 1180);
   });
 
-  it("Mobile - Check Scrollable Text", () => {
+  it("Mobile", () => {
     runTest(390, 844);
   });
 });
