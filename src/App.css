@@ -14,15 +14,15 @@
 
     --base-size: 1.2rem;
     --scale: 1.25;
-    --xl: calc(var(--h1) * var(--scale) * var(--scale)); /* 7.15rem */
-    --lg: calc(var(--h1) * var(--scale)); /* 4.575rem */
-    --h1: calc(var(--h2) * var(--scale)); /* 3.66rem */
-    --h2: calc(var(--h3) * var(--scale)); /* 2.93rem */
-    --h3: calc(var(--h4) * var(--scale)); /* 2.34rem */
-    --h4: calc(var(--h5) * var(--scale)); /* 1.875rem */
-    --h5: calc(var(--h6) * var(--scale)); /* 1.5rem */
-    --h6: var(--base-size); /* 1.2rem */
-    --small: calc(var(--base-size) / var(--scale)); /* 0.96rem */
+    --xl: calc(var(--h1) * var(--scale) * var(--scale)); 
+    --lg: calc(var(--h1) * var(--scale));
+    --h1: calc(var(--h2) * var(--scale));
+    --h2: calc(var(--h3) * var(--scale));
+    --h3: calc(var(--h4) * var(--scale));
+    --h4: calc(var(--h5) * var(--scale));
+    --h5: calc(var(--h6) * var(--scale));
+    --h6: var(--base-size);
+    --small: calc(var(--base-size) / var(--scale));
 
     --radius: 5px;
   }
@@ -136,7 +136,6 @@
 }
 
 .card {
-  border: 1px solid var(--coffee);
   overflow-y: hidden;
   overflow-x: scroll;
 }
@@ -162,7 +161,9 @@
   line-height: 1.5;
   padding: 2rem 2rem 0 2rem;
   margin: 0;
-  overflow: scroll;
+  width: fit-content;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .button {
@@ -184,8 +185,21 @@
   color: var(--vanilla);
 }
 
-header h1 {
-  overflow: scroll;
+header {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.font-size-button {
+  margin: 0;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.card-container {
+  overflow: hidden;
 }
 
 @media (min-width: 475px) {

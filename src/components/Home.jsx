@@ -118,7 +118,6 @@ function Home() {
               alt="Black coffee in a white cup and saucer."
             />
           </div>
-
           <p>
             Want an even balance of milk and espresso? Our cappuccino is for
             you. Ask for a sprinkle of cocoa powder, vanilla powder, or cinnamon
