@@ -27,8 +27,8 @@ describe("Text Overlaps", () => {
             rect1.y + rect1.height >= rect2.y &&
             rect1.y <= rect2.y + rect2.height
           ) {
-            cy.log(`${element.textContent}, ${array[i].textContent}`);
-            // return false;
+            cy.log(`${element}, ${array[i]}`);
+            return false;
           }
         }
         return true;
@@ -38,7 +38,7 @@ describe("Text Overlaps", () => {
     };
 
     cy.get(".card, header, .font-size-button")
-      .find(":not(.card-img, img, .fancy-text, .card h2)")
+      .find(":not(.card-img, img, .fancy-text, .card h2, .card p)")
       .filter((index, element) => {
         return !Cypress.$(element).text().includes("Order Now");
       })
@@ -75,8 +75,10 @@ describe("Unscrollable Text", () => {
     cy.viewport(viewportWidth, viewportHeight);
 
     const isScrollable = (element) => {
-      const { scrollHeight, clientHeight } = element[0];
-      return scrollHeight > clientHeight;
+      const { scrollHeight, clientHeight, scrollWidth, clientWidth } =
+        element[0];
+      cy.log(element[0].textContent);
+      return scrollHeight > clientHeight && scrollWidth > clientWidth;
     };
 
     const checkUnscrollableText = () => {

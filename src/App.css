@@ -135,17 +135,14 @@
   margin-bottom: 4rem;
 }
 
-.card-container * {
-  overflow-x: scroll;
-  overflow-y: none;
-}
-
 .card {
-  overflow: none;
+  border: 1px solid var(--coffee);
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 .card h2 {
-  /* margin: 4rem 0 1rem 0; */
+  margin: 4rem 0 1rem 0;
   font-size: var(--h3);
   text-align: center;
 }
@@ -165,6 +162,7 @@
   line-height: 1.5;
   padding: 2rem 2rem 0 2rem;
   margin: 0;
+  overflow: scroll;
 }
 
 .button {
@@ -184,6 +182,10 @@
 .button:hover {
   background-color: var(--coffee);
   color: var(--vanilla);
+}
+
+header h1 {
+  overflow: scroll;
 }
 
 @media (min-width: 475px) {
