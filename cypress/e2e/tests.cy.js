@@ -14,10 +14,10 @@ describe("Text Overlaps", () => {
           const rect2 = array[i].getBoundingClientRect();
 
           if (
-            rect1.x + element.clientWidth >= rect2.x &&
-            rect1.x <= rect2.x + array[i].clientWidth &&
-            rect1.y + element.clientHeight >= rect2.y &&
-            rect1.y <= rect2.y + array[i].clientHeight
+            rect1.x + rect1.width >= rect2.x &&
+            rect1.x <= rect2.x + rect2.width &&
+            rect1.y + rect1.height >= rect2.y &&
+            rect1.y <= rect2.y + rect2.height
           ) {
             cy.log(`${element}, ${array[i]}`);
             return false;
@@ -29,7 +29,7 @@ describe("Text Overlaps", () => {
       expect(noOverlap).to.be.true;
     };
 
-    cy.get(".card > p").then((allTextElements) => {
+    cy.get(".card > p, h2").then((allTextElements) => {
       for (let i = 0; i <= 15; i++) {
         if (i === 0) {
           checkTextOverlap(allTextElements);

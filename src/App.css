@@ -300,6 +300,7 @@ header {
     color: var(--coffee);
     border: 2px solid var(--coffee);
     margin-top: 2rem;
+    overflow: scroll;
   }
 
   .button:hover {
