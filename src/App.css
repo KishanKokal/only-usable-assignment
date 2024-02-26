@@ -157,9 +157,9 @@
   min-height: 200px;
 }
 
-.card p {
+/* .card p {
   overflow-y: scroll;
-}
+} */
 
 .card p:first-of-type {
   line-height: 1.5;
