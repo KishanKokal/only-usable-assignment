@@ -19,7 +19,7 @@ describe("Text Overlaps", () => {
             rect1.y + rect1.height >= rect2.y &&
             rect1.y <= rect2.y + rect2.height
           ) {
-            cy.log(`${element}, ${array[i]}`);
+            cy.log(`${element.classList}, ${array[i].classList}`);
             return false;
           }
         }
@@ -29,7 +29,7 @@ describe("Text Overlaps", () => {
       expect(noOverlap).to.be.true;
     };
 
-    cy.get(".card > p, h2").then((allTextElements) => {
+    cy.get(".card").then((allTextElements) => {
       for (let i = 0; i <= 15; i++) {
         if (i === 0) {
           checkTextOverlap(allTextElements);
@@ -78,18 +78,20 @@ describe("Unscrollable Text", () => {
       });
     };
 
-    cy.get("p, .card, header, .font-size-button").then((allTextElements) => {
-      for (let i = 1; i <= 15; i++) {
-        if (i === 1) {
-          checkScrollableText(allTextElements);
-        }
-        cy.get("#increment-button")
-          .click()
-          .then(() => {
+    cy.get("p, .card, header, .font-size-button")
+      .filter(":not(.button)")
+      .then((allTextElements) => {
+        for (let i = 1; i <= 15; i++) {
+          if (i === 1) {
             checkScrollableText(allTextElements);
-          });
-      }
-    });
+          }
+          cy.get("#increment-button")
+            .click()
+            .then(() => {
+              checkScrollableText(allTextElements);
+            });
+        }
+      });
   };
 
   it("Desktop", () => {
