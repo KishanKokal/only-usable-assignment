@@ -166,9 +166,10 @@ describe("Text Overlaps", () => {
   });
 });
 ```
+- Unscrollable text detection theory
+![detecting-unscrollable-text](assets/detecting-unscrollable-text.png)
 
 _/cypress/e2e/tests.cy.js_
-
 ```
 
 describe("Unscrollable Text", () => {
