@@ -138,6 +138,7 @@
 .card {
   overflow-y: hidden;
   overflow-x: scroll;
+  margin-bottom: 1rem;
 }
 
 .card h2 {

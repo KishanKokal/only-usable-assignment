@@ -19,7 +19,11 @@ describe("Text Overlaps", () => {
             rect1.y + rect1.height >= rect2.y &&
             rect1.y <= rect2.y + rect2.height
           ) {
-            cy.log(`${element.classList}, ${array[i].classList}`);
+            // cy.log("===========");
+            // cy.log(`${rect1.x + rect1.width} >= ${rect2.x}`);
+            // cy.log(`${rect1.x} <= ${rect2.x + rect2.width}`);
+            // cy.log(`${rect1.y + rect1.height} >= ${rect2.y}`);
+            // cy.log(`${rect1.y} <= ${rect2.y + rect2.height}`);
             return false;
           }
         }
