@@ -96,7 +96,7 @@ header {
 - Explored integration testing for user interfaces and discovered the Cypress testing framework. I learned that this framework simulates human interaction by navigating to the app and engaging with it. We can then use assertions to check if the UI aligns with our expectations.
 
 * Overlap detection theory
-![detecting-overlaps]("./assets/detecting-overlaps.png")
+![detecting-overlaps](assets/detecting-overlaps.png)
 
 _/cypress/e2e/tests.cy.js_
 
