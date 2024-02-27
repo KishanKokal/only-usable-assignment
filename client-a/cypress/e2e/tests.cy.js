@@ -66,35 +66,43 @@ describe("Unscrollable Text", () => {
     cy.viewport(viewportWidth, viewportHeight);
 
     const checkScrollableText = (elements) => {
-      elements.each((index, element) => {
+      const isUnscrollable = elements.toArray().every((element) => {
+        cy.log(element);
         if (
           element.tagName === "P" &&
           !element.classList.contains("font-size-button")
         ) {
-          cy.wrap(element)
-            .invoke("css", "overflow-y")
-            .should("equal", "scroll");
+          return !(
+            element.scrollHeight >= element.clientHeight &&
+            window.getComputedStyle(element).getPropertyValue("overflow-y") ===
+              "scroll"
+          );
         } else {
-          cy.wrap(element)
-            .invoke("css", "overflow-x")
-            .should("equal", "scroll");
+          return !(
+            element.scrollWidth >= element.clientWidth &&
+            window.getComputedStyle(element).getPropertyValue("overflow-x") ===
+              "scroll"
+          );
         }
       });
+      expect(isUnscrollable).to.be.false;
+    };
+
+    const clickIncrementButton = () => {
+      return cy.get("#increment-button").click();
     };
 
     cy.get("p, .card, header, .font-size-button")
       .filter(":not(.button)")
       .then((allTextElements) => {
-        for (let i = 1; i <= 15; i++) {
-          if (i === 1) {
+        const iterate = (i) => {
+          if (i <= 15) {
             checkScrollableText(allTextElements);
+            clickIncrementButton().then(() => iterate(i + 1));
           }
-          cy.get("#increment-button")
-            .click()
-            .then(() => {
-              checkScrollableText(allTextElements);
-            });
-        }
+        };
+
+        iterate(1);
       });
   };
 
