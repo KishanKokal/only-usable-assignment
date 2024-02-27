@@ -170,43 +170,43 @@ describe("Text Overlaps", () => {
 _/cypress/e2e/tests.cy.js_
 
 ```
+
 describe("Unscrollable Text", () => {
   const runTest = (viewportWidth, viewportHeight) => {
-
-    // visit the application on port 5173
     cy.visit("http://localhost:5173");
-
     cy.viewport(viewportWidth, viewportHeight);
 
     const checkScrollableText = (elements) => {
-      elements.each((index, element) => {
+      const isUnscrollable = elements.toArray().every((element) => {
+        cy.log(element);
         if (
           element.tagName === "P" &&
           !element.classList.contains("font-size-button")
         ) {
-          cy.wrap(element)
-            .invoke("css", "overflow-y")
-            .should("equal", "scroll");
+          return !(element.scrollHeight >= element.clientHeight && window.getComputedStyle(element).getPropertyValue("overflow-y") === "scroll");
         } else {
-          cy.wrap(element)
-            .invoke("css", "overflow-x")
-            .should("equal", "scroll");
+          return !(element.scrollWidth >= element.clientWidth && window.getComputedStyle(element).getPropertyValue("overflow-x") === "scroll");
         }
       });
+      expect(isUnscrollable).to.be.false;
     };
 
-    cy.get("p, .card, header, .font-size-button").then((allTextElements) => {
-      for (let i = 1; i <= 15; i++) {
-        if (i === 1) {
-          checkScrollableText(allTextElements);
-        }
-        cy.get("#increment-button")
-          .click()
-          .then(() => {
+    const clickIncrementButton = () => {
+      return cy.get("#increment-button").click();
+    };
+
+    cy.get("p, .card, header, .font-size-button")
+      .filter(":not(.button)")
+      .then((allTextElements) => {
+        const iterate = (i) => {
+          if (i <= 15) {
             checkScrollableText(allTextElements);
-          });
-      }
-    });
+            clickIncrementButton().then(() => iterate(i + 1));
+          }
+        };
+
+        iterate(1);
+      });
   };
 
   it("Desktop", () => {
@@ -221,4 +221,5 @@ describe("Unscrollable Text", () => {
     runTest(390, 844);
   });
 });
+
 ```
